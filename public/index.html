@@ -52,18 +52,17 @@
           <td>${car.make}</td>
           <td>${car.year}</td>
           <td>${car.color}</td>
-          <td id="actionTd">
+          <td class="actionTd">
           </td>
         `;
         
-        const actionTd = row.querySelector("#actionTd");
+        const actionTd = row.querySelector(".actionTd");
 
         // DELETE ACTION
         const deleteBtn = document.createElement("button");
         deleteBtn.textContent = "delete";
         deleteBtn.addEventListener("click", async () => {
-          const id = Number(row.children[0].textContent);
-          await fetch(`/api/cars/${id}`, {
+          await fetch(`/api/cars/${car.id}`, {
             method: "DELETE",
             headers: {
               "Content-Type": "application/json"
@@ -89,11 +88,6 @@
           const saveBtn = document.createElement("button");
           saveBtn.textContent = "save";
           saveBtn.addEventListener("click", async () => {
-            const brandInput = row.children[1].querySelector("input");
-            const makeInput = row.children[2].querySelector("input");
-            const yearInput = row.children[3].querySelector("input");
-            const colorInput = row.children[4].querySelector("input");
-
             const updatedCar = {
               brand: row.children[1].querySelector("input").value,
               make: row.children[2].querySelector("input").value,
@@ -101,8 +95,7 @@
               color: row.children[4].querySelector("input").value
             };
 
-            const id = Number(row.children[0].textContent);
-            await fetch(`/api/cars/${id}`, {
+            await fetch(`/api/cars/${car.id}`, {
               method: "PUT",
               headers: {
                 "Content-Type": "application/json"
