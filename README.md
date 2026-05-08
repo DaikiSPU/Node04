@@ -1,9 +1,5 @@
 ## How I Solved the Problem
 
-The starter code from the instructor already created the basic Cars App page, including the form, the table structure, and the `loadCars()` function that gets car data from `/api/cars`.
-
-My main task was to add the actions for each car row. I added a `delete` button and an `update` button inside the Action column for every car that is loaded into the table.
-
 For the delete feature, I created a button named `delete` for each row. When the user clicks this button, the code gets the car's ID from the row and sends a `DELETE` request to `/api/cars/:id`. This tells the server which car record should be removed. After the server finishes deleting the car, I call `loadCars()` again. This clears the old table and reloads the current list of cars, so the deleted car no longer appears on the page.
 
 For the update feature, I created a button named `update` for each row. When the user clicks this button, the car's current values in the table are changed into input boxes. This allows the user to edit the brand, make, year, and color directly inside the table row.
@@ -11,8 +7,6 @@ For the update feature, I created a button named `update` for each row. When the
 After the row changes into input boxes, the delete and update buttons are hidden, and a new `save` button is added. This prevents the user from clicking delete or update while the row is already being edited.
 
 When the user clicks the save button, the code reads the values from the input boxes and creates an `updatedCar` object. Then it sends a `PUT` request to `/api/cars/:id` with the updated car data in JSON format. This tells the server to replace the old car information with the new information. After the update is finished, I call `loadCars()` again so the table refreshes and displays the updated record.
-
-Overall, the solution works by using the existing `loadCars()` function to keep the table updated after every delete or update action. Instead of manually changing the table after each action, the page reloads the car data from the server so the displayed table stays synchronized with the actual data.
 
 ## Screenshots and Explanation of What Is Happening
 
